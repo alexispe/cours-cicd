@@ -6,8 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install dependencies and test
+      - name: Install dependencies and build
         run: |
           npm install
           npm run build
-          npm run e2e:headless
+      - run: npm run e2e:headless
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: e2e-tests
+          path: cypress/videos

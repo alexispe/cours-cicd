@@ -12,7 +12,7 @@ jobs:
           npm run build
       - run: npm run e2e:headless
       - uses: actions/upload-artifact@v3
-        if: always()
+        if: ${{ always() }}
         with:
           name: e2e-tests
           path: cypress/videos

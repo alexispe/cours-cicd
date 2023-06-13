@@ -62,4 +62,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ghcr.io/alexispe/cesi-test-cicd:latest
+          tags: ghcr.io/alexispe/cesi-next-cicd:latest

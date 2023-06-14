@@ -48,6 +48,7 @@ jobs:
   deploy-production:
     runs-on: ubuntu-latest
     environment: production
+    if: github.ref_name == 'main'
     permissions:
       contents: read
       packages: write
@@ -68,6 +69,7 @@ jobs:
   deploy-development:
     runs-on: ubuntu-latest
     environment: development
+    if: github.ref_name == 'develop'
     permissions:
       contents: read
       packages: write

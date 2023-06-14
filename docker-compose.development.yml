@@ -1,9 +1,9 @@
 services:
   next:
-    image: ghcr.io/alexispe/cesi-next-cicd:latest
+    image: ghcr.io/alexispe/cesi-next-cicd:development
     restart: always
     ports:
-      - 3000:3000
+      - 3001:3000
 
   db:
     image: mariadb:10.6
@@ -18,10 +18,4 @@ services:
   adminer:
     image: adminer
     ports:
-      - 8080:8080
-
-  watchtower:
-    image: containrrr/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: admin-next-1 --interval=30
+      - 8081:8080

@@ -47,7 +47,9 @@ jobs:
 #          pm2 restart all"
   deploy-production:
     runs-on: ubuntu-latest
-    environment: production
+    environment:
+      name: production
+      url: http://35.181.58.20:3000
     if: github.ref_name == 'main'
     permissions:
       contents: read

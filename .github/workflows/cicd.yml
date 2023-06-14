@@ -70,9 +70,16 @@ jobs:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
+#      - run: |
+#          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+#          sudo docker pull ghcr.io/alexispe/cesi-next-cicd:latest && \
+#          sudo docker stop next && \
+#          sudo docker rm next && \
+#          sudo docker run -d -p 3000:3000 --name next ghcr.io/alexispe/cesi-next-cicd:latest"
       - run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
-          sudo docker pull ghcr.io/alexispe/cesi-next-cicd:latest && \
-          sudo docker stop next && \
-          sudo docker rm next && \
-          sudo docker run -d -p 3000:3000 --name next ghcr.io/alexispe/cesi-next-cicd:latest"
+          sudo docker compose -f docker-compose.prod.yml up -d --pull always"
+
+
+
+

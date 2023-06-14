@@ -1,0 +1,6 @@
+services:
+  next:
+    image: ghcr.io/alexispe/cesi-next-cicd:latest
+    restart: always
+    ports:
+      - 3000:3000

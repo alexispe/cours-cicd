@@ -6,8 +6,11 @@ services:
       - reverse-proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.next-production.rule=PathPrefix(`/next`)"
+      - "traefik.http.routers.next-production.rule=Host(`ec2-35-181-58-20.eu-west-3.compute.amazonaws.com`) && PathPrefix(`/`)"
+#      - "traefik.http.routers.next-production.rule=PathPrefix(`/next`)"
       - "traefik.http.routers.next-production.entrypoints=web"
+#      - "traefik.http.middlewares.test-stripprefix.stripprefix.prefixes=/next"
+#      - "traefik.http.routers.next-production.middlewares=test-stripprefix"
 
   db:
     image: mariadb:10.6
@@ -25,7 +28,7 @@ services:
       - reverse-proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adminer-production.rule=PathPrefix(`/adminer`)"
+      - "traefik.http.routers.adminer-production.rule=Host(`ec2-35-181-58-20.eu-west-3.compute.amazonaws.com`) && PathPrefix(`/adminer`)"
       - "traefik.http.routers.adminer-production.entrypoints=web"
 
 networks:

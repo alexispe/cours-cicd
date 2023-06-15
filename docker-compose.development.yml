@@ -2,8 +2,12 @@ services:
   next:
     image: ghcr.io/alexispe/cesi-next-cicd:development
     restart: always
-    ports:
-      - 3001:3000
+    networks:
+      - reverse-proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.next-development.rule=Host(`35.181.58.20`) && PathPrefix(`/`)"
+      - "traefik.http.routers.next-development.entrypoints=web"
 
   db:
     image: mariadb:10.6
@@ -17,5 +21,14 @@ services:
 
   adminer:
     image: adminer
-    ports:
-      - 8081:8080
+    networks:
+      - reverse-proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adminer-development.rule=Host(`35.181.58.20`) && PathPrefix(`/adminer`)"
+      - "traefik.http.routers.adminer-development.entrypoints=web"
+
+networks:
+  reverse-proxy:
+    name: reverse-proxy
+    external: true

@@ -51,7 +51,7 @@ jobs:
     environment:
       name: production
       url: http://35.181.58.20:3000
-    if: github.ref_name == 'main'
+    if: github.ref_type == 'tag'
     permissions:
       contents: read
       packages: write
@@ -67,7 +67,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ghcr.io/alexispe/cesi-next-cicd:latest
+          tags: |
+            ghcr.io/alexispe/cesi-next-cicd:latest
+            ghcr.io/alexispe/cesi-next-cicd:${{ github.ref_name }}
 
   deploy-development:
     runs-on: ubuntu-latest

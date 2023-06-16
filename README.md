@@ -1,3 +1,5 @@
+[![.github/workflows/cicd.yml](https://github.com/alexispe/cours-cicd/actions/workflows/cicd.yml/badge.svg)](https://github.com/alexispe/cours-cicd/actions/workflows/cicd.yml)
+
 # Next.js + Cypress
 
 This example shows how to configure Cypress to work with Next.js.
